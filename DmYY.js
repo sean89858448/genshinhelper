@@ -97,8 +97,9 @@ class DmYY {
       return boxdata.datas
     } catch (e) {
       if (notify)
-        await this.notify(`${this.name} - BoxJS 數據讀取失敗`,
-          '請檢查 BoxJS 域名是否為代理複寫的域名，如（boxjs.net 或 boxjs.com）。 \n若沒有配置 BoxJS 相關模塊，請點擊通知查看教程',
+        await this.notify(
+          `${this.name} - BoxJS 數據讀取失敗`,
+          '請檢查 BoxJS 域名是否爲代理複寫的域名，如（boxjs.net 或 boxjs.com）。\n若沒有配置 BoxJS 相關模塊，請點擊通知查看教程',
           'https://chavyleung.gitbook.io/boxjs/awesome/videos'
         )
       return false
@@ -117,7 +118,7 @@ class DmYY {
     console.log('It is not a string!')
   }
 
-  // 選擇圖片並緩存
+  // 選擇圖片幷緩存
   chooseImg = async () => {
     return await Photos.fromLibrary()
   }
@@ -156,7 +157,7 @@ class DmYY {
       if (width > 1000) {
         const options = ['取消', '打開圖像處理']
         const message =
-          '您的圖片像素為' +
+          '您的圖片像素爲' +
           width +
           ' x ' +
           height +
@@ -196,7 +197,8 @@ class DmYY {
 
     // Pixel sizes and positions for widgets on all supported phones.
     function phoneSizes() {
-      return {// 12 Pro Max
+      return {
+        // 12 Pro Max
         2778: {
           small: 510,
           medium: 1092,
@@ -369,15 +371,15 @@ class DmYY {
     }
 
     // Prompt for widget size and position.
-    message = '截圖中要設置透明背景組件的尺寸類型是？ '
+    message = '截圖中要設置透明背景組件的尺寸類型是？'
     let sizes = ['小尺寸', '中尺寸', '大尺寸']
     let size = await this.generateAlert(message, sizes)
     let widgetSize = sizes[size]
 
-    message = '要設置透明背景的小組件在哪個位置？ '
+    message = '要設置透明背景的小組件在哪個位置？'
     message +=
       height === 1136
-        ? ' （備註：當前設備只支持兩行小組件，所以下邊選項中的「中間」和「底部」的選項是一致的）'
+        ? ' （備注：當前設備只支持兩行小組件，所以下邊選項中的「中間」和「底部」的選項是一致的）'
         : ''
 
     // Determine image crop based on phone size.
