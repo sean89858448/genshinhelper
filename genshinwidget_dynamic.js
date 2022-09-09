@@ -1,32 +1,32 @@
 // Variables used by Scriptable.
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-purple; icon-glyph: magic;
-// 添加require，是爲了vscode中可以正確引入包，以獲得自動補全等功能
+// 添加require，是为了vscode中可以正确引入包，以获得自动补全等功能
 
-// @組件代碼開始
+// @组件代码开始
 if (typeof require === 'undefined') require = importModule; //
 const { DmYY, Runing } = require('./DmYY');
 
-// ========= ↓將生成的配置粘貼這以下↓=========
+// ========= ↓将生成的配置粘贴这以下↓=========
 
 
-// ========= ↑將生成的配置粘貼這以上↑ ========
+// ========= ↑将生成的配置粘贴这以上↑ ========
 
 /**
  * @typedef {Object} ResinResponse
- * @property {number} total_task_num - 每日委托任務
- * @property {number} finished_task_num - 每日委托完成數
- * @property {number} max_resin - 樹脂上限
- * @property {number} current_resin - 當前樹脂
- * @property {number} max_home_coin - 洞天寶錢上限
- * @property {number} current_home_coin - 當前洞天寶錢
- * @property {string} resin_recovery_time - 樹脂預計恢復時間
- * @property {string} home_coin_recovery_time - 洞天寶錢預計恢復時間
- * @property {number} resin_discount_num_limit - 强敵每周减半次數上限
- * @property {number} remain_resin_discount_num - 强敵每周减半次數剩餘
+ * @property {number} total_task_num - 每日委托任务
+ * @property {number} finished_task_num - 每日委托完成数
+ * @property {number} max_resin - 树脂上限
+ * @property {number} current_resin - 当前树脂
+ * @property {number} max_home_coin - 洞天宝钱上限
+ * @property {number} current_home_coin - 当前洞天宝钱
+ * @property {string} resin_recovery_time - 树脂预计恢复时间
+ * @property {string} home_coin_recovery_time - 洞天宝钱预计恢复时间
+ * @property {number} resin_discount_num_limit - 强敌每周减半次数上限
+ * @property {number} remain_resin_discount_num - 强敌每周减半次数剩余
  * @property {number} max_expedition_num - 探索派遣限制
- * @property {number} current_expedition_num - 當前探索派遣人數
- * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人員詳情 
+ * @property {number} current_expedition_num - 当前探索派遣人数
+ * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人员详情 
  */
 
 let resin
@@ -72,8 +72,8 @@ class Widget extends DmYY {
                 this.name = '原神助手';
                 this.en = 'genshinhelper';
                 if (config.runsInApp) {
-                        this.registerAction('基礎設置', this.setWidgetConfig);
-                        //this.registerAction('插件設置', this.actionSetting);
+                        this.registerAction('基础设置', this.setWidgetConfig);
+                        //this.registerAction('插件设置', this.actionSetting);
                 }
         }
 
@@ -94,7 +94,7 @@ class Widget extends DmYY {
 
 
         /**
-         * 渲染小尺寸組件
+         * 渲染小尺寸组件
          */
         async renderSmall(widget) {
                 const ThemeConfig = Device.isPad() ? {
@@ -127,14 +127,14 @@ class Widget extends DmYY {
                         bottomSpacer: 15,
                 }
 
-                //添加標題欄
+                //添加标题栏
                 let stackHeader = widget.addStack()
                 stackHeader.centerAlignContent()
                 // 添加UID
                 var textItem = stackHeader.addText(` UID：${config[0]}`)
                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
-                // 添加更新時間
+                // 添加更新时间
                 stackHeader.addSpacer()
                 var myDate = new Date();
                 var textItem = stackHeader.addText(`${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新`)
@@ -143,30 +143,30 @@ class Widget extends DmYY {
                 textItem.rightAlignText()
                 //widget.addSpacer(2)
 
-                // 頁面共分爲 2*2 個模塊，首先建立橫向布局
-                // 橫向布局 - 第一行
+                // 页面共分为 2*2 个模块，首先建立横向布局
+                // 横向布局 - 第一行
                 let topHorizon = widget.addStack()
                 topHorizon.layoutHorizontally()
                 topHorizon.centerAlignContent()
                 widget.addSpacer(1)
-                // 橫向布局 - 第二行
+                // 横向布局 - 第二行
                 let bottomHorizon = widget.addStack()
                 bottomHorizon.layoutHorizontally()
                 bottomHorizon.centerAlignContent()
                 //widget.addSpacer(4)
 
-                // 縱向布局 - 第一行左側
+                // 纵向布局 - 第一行左侧
                 let topLeftStack = topHorizon.addStack()
                 topLeftStack.layoutVertically()
                 topLeftStack.size = new Size(120, 60)
                 topLeftStack.bottomAlignContent()
-                // 縱向布局 - 第二行左側
+                // 纵向布局 - 第二行左侧
                 let bottomLeftStack = bottomHorizon.addStack()
                 bottomLeftStack.layoutVertically()
                 bottomLeftStack.size = new Size(120, 60)
                 bottomLeftStack.bottomAlignContent()
 
-                // 樹脂獲取
+                // 树脂获取
                 let resinStack = topLeftStack.addStack()
                 let resinStack2 = topLeftStack.addStack()
                 let resinTipStack = topLeftStack.addStack()
@@ -174,7 +174,7 @@ class Widget extends DmYY {
                 ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinElement = resinStack.addText(`當前樹脂：`)
+                let ResinElement = resinStack.addText(`当前树脂：`)
                 ResinElement.textColor = this.widgetColor
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -199,7 +199,7 @@ class Widget extends DmYY {
                 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 resinStack.centerAlignContent()
 
-                // 寶錢獲取
+                // 宝钱获取
                 let coinStack = bottomLeftStack.addStack()
                 let coinStack2 = bottomLeftStack.addStack()
                 let coinTipStack = bottomLeftStack.addStack()
@@ -207,7 +207,7 @@ class Widget extends DmYY {
                 CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
-                let CoinElement = coinStack.addText(`洞天寶錢：`)
+                let CoinElement = coinStack.addText(`洞天宝钱：`)
                 CoinElement.textColor = this.widgetColor
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -238,7 +238,7 @@ class Widget extends DmYY {
 
 
         /**
-         * 渲染中尺寸組件
+         * 渲染中尺寸组件
          */
         async renderMedium(widget) {
                 const ThemeConfig = Device.isPad() ? {
@@ -279,14 +279,14 @@ class Widget extends DmYY {
                 // ]
                 // widget.backgroundGradient = gradient
 
-                //添加標題欄
+                //添加标题栏
                 let stackHeader = widget.addStack()
                 stackHeader.centerAlignContent()
                 // 添加UID
                 var textItem = stackHeader.addText(` UID：${config[0]}`)
                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
-                // 添加更新時間
+                // 添加更新时间
                 stackHeader.addSpacer()
                 var myDate = new Date();
                 var textItem = stackHeader.addText(`${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新      `)
@@ -294,46 +294,46 @@ class Widget extends DmYY {
                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 //textItem.rightAlignText()
 
-                // 頁面共分爲 2*2 個模塊，首先建立橫向布局
-                // 橫向布局 - 第一行
+                // 页面共分为 2*2 个模块，首先建立横向布局
+                // 横向布局 - 第一行
                 let topHorizon = widget.addStack()
                 topHorizon.layoutHorizontally()
                 topHorizon.centerAlignContent()
                 widget.addSpacer(4)
-                // 橫向布局 - 第二行
+                // 横向布局 - 第二行
                 let bottomHorizon = widget.addStack()
                 bottomHorizon.layoutHorizontally()
                 bottomHorizon.centerAlignContent()
                 //widget.addSpacer(4)
 
-                // 縱向布局 - 第一行左側
+                // 纵向布局 - 第一行左侧
                 let topLeftStack = topHorizon.addStack()
                 topLeftStack.layoutVertically()
                 topLeftStack.size = new Size(140, 60)
                 topLeftStack.bottomAlignContent()
-                // 左側與右側間的間距
+                // 左侧与右侧间的间距
                 topHorizon.addSpacer()
-                // 縱向布局 - 第一行右側
+                // 纵向布局 - 第一行右侧
                 let topRightStack = topHorizon.addStack()
                 topRightStack.size = new Size(105, 60)
                 topRightStack.layoutVertically()
                 topRightStack.bottomAlignContent()
 
-                // 縱向布局 - 第二行左側
+                // 纵向布局 - 第二行左侧
                 let bottomLeftStack = bottomHorizon.addStack()
                 bottomLeftStack.layoutVertically()
                 bottomLeftStack.size = new Size(140, 60)
                 bottomLeftStack.bottomAlignContent()
-                // 左側與右側間的間距
+                // 左侧与右侧间的间距
                 bottomHorizon.addSpacer()
-                // 縱向布局 - 第二行右側
+                // 纵向布局 - 第二行右侧
                 let bottomRightStack = bottomHorizon.addStack()
                 bottomRightStack.layoutVertically()
                 bottomRightStack.size = new Size(105, 60)
                 bottomRightStack.bottomAlignContent()
 
 
-                // 樹脂獲取
+                // 树脂获取
                 let resinStack = topLeftStack.addStack()
                 let resinStack2 = topLeftStack.addStack()
                 let resinTipStack = topLeftStack.addStack()
@@ -341,7 +341,7 @@ class Widget extends DmYY {
                 ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinElement = resinStack.addText(`當前樹脂：`)
+                let ResinElement = resinStack.addText(`当前树脂：`)
                 ResinElement.textColor = this.widgetColor
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -366,7 +366,7 @@ class Widget extends DmYY {
                 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 resinStack.centerAlignContent()
 
-                // 寶錢獲取
+                // 宝钱获取
                 let coinStack = bottomLeftStack.addStack()
                 let coinStack2 = bottomLeftStack.addStack()
                 let coinTipStack = bottomLeftStack.addStack()
@@ -374,7 +374,7 @@ class Widget extends DmYY {
                 CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
-                let CoinElement = coinStack.addText(`洞天寶錢：`)
+                let CoinElement = coinStack.addText(`洞天宝钱：`)
                 CoinElement.textColor = this.widgetColor
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -399,13 +399,13 @@ class Widget extends DmYY {
                 CoinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 coinStack.centerAlignContent()
 
-                // 周本獲取
+                // 周本获取
                 let resinDiscountStack = topRightStack.addStack()
                 let ResinDiscountIconElement = resinDiscountStack.addImage(discountIcon)
                 ResinDiscountIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinDiscountIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinDiscountStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinDiscountTextElement = resinDiscountStack.addText(`半價周本：`)
+                let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本：`)
                 ResinDiscountTextElement.textColor = this.widgetColor
                 ResinDiscountTextElement.textOpacity = 0.6
                 ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -420,7 +420,7 @@ class Widget extends DmYY {
                 ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                 resinDiscountStack.centerAlignContent()
 
-                //每日委托獲取
+                //每日委托获取
                 let taskStack = topRightStack.addStack()
                 let TaskIconElement = taskStack.addImage(taskIcon)
                 TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
@@ -440,12 +440,12 @@ class Widget extends DmYY {
                 TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                 taskStack.centerAlignContent()
 
-                // 參量質變儀
+                // 参量质变仪
                 var stackText = topRightStack.addStack()
                 var transformIcon = stackText.addImage(transformerIcon)
                 transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 stackText.addSpacer(ThemeConfig.iconSpacer)
-                var textItem = stackText.addText("參量質變：")
+                var textItem = stackText.addText("参量质变：")
                 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 textItem.textColor = this.widgetColor
                 textItem.textOpacity = 0.6
@@ -461,7 +461,7 @@ class Widget extends DmYY {
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
                         if (+transformer_recovery_time.Hour > 0) {
-                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 時`)
+                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
                                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
@@ -477,7 +477,7 @@ class Widget extends DmYY {
                         }
                 }
 
-                // 派遣任務獲取
+                // 派遣任务获取
                 let expeditionsTitleStack = topRightStack.addStack()
                 let isHasFinished = false
                 let minCoverTime = 0
@@ -522,7 +522,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = this.widgetColor
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -538,7 +538,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = this.widgetColor
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -558,7 +558,7 @@ class Widget extends DmYY {
 
 
         /**
-         * 渲染大尺寸組件
+         * 渲染大尺寸组件
          */
         async renderLarge(widget) {
                 const ThemeConfig = Device.isPad() ? {
@@ -599,14 +599,14 @@ class Widget extends DmYY {
                 // ]
                 // widget.backgroundGradient = gradient
 
-                //添加標題欄
+                //添加标题栏
                 let stackHeader = widget.addStack()
                 stackHeader.centerAlignContent()
                 // 添加UID
                 var textItem = stackHeader.addText(` UID：${config[0]}`)
                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
-                // 添加更新時間
+                // 添加更新时间
                 stackHeader.addSpacer()
                 var myDate = new Date();
                 var textItem = stackHeader.addText(`${myDate.getHours().toString().padStart(2, '0')}:${myDate.getMinutes().toString().padStart(2, '0')}更新      `)
@@ -614,50 +614,50 @@ class Widget extends DmYY {
                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 //textItem.rightAlignText()
 
-                // 頁面共分爲 3*2 個模塊，首先建立橫向布局
-                // 橫向布局 - 第一行
+                // 页面共分为 3*2 个模块，首先建立横向布局
+                // 横向布局 - 第一行
                 let topHorizon = widget.addStack()
                 topHorizon.layoutHorizontally()
                 topHorizon.centerAlignContent()
                 widget.addSpacer(4)
-                // 橫向布局 - 第二行
+                // 横向布局 - 第二行
                 let bottomHorizon = widget.addStack()
                 bottomHorizon.layoutHorizontally()
                 bottomHorizon.centerAlignContent()
-                // 橫向布局 - 第三行
+                // 横向布局 - 第三行
                 widget.addSpacer()
                 let finalHorizon = widget.addStack()
                 finalHorizon.layoutVertically()
                 finalHorizon.size = new Size(300, 175)
                 finalHorizon.centerAlignContent()
 
-                // 縱向布局 - 第一行左側
+                // 纵向布局 - 第一行左侧
                 let topLeftStack = topHorizon.addStack()
                 topLeftStack.layoutVertically()
                 topLeftStack.size = new Size(140, 60)
                 topLeftStack.centerAlignContent()
-                // 左側與右側間的間距
+                // 左侧与右侧间的间距
                 topHorizon.addSpacer()
-                // 縱向布局 - 第一行右側
+                // 纵向布局 - 第一行右侧
                 let topRightStack = topHorizon.addStack()
                 topRightStack.size = new Size(105, 60)
                 topRightStack.layoutVertically()
                 topRightStack.centerAlignContent()
 
-                // 縱向布局 - 第二行左側
+                // 纵向布局 - 第二行左侧
                 let bottomLeftStack = bottomHorizon.addStack()
                 bottomLeftStack.layoutVertically()
                 bottomLeftStack.size = new Size(140, 60)
                 bottomLeftStack.centerAlignContent()
-                // 左側與右側間的間距
+                // 左侧与右侧间的间距
                 bottomHorizon.addSpacer()
-                // 縱向布局 - 第二行右側
+                // 纵向布局 - 第二行右侧
                 let bottomRightStack = bottomHorizon.addStack()
                 bottomRightStack.layoutVertically()
                 bottomRightStack.size = new Size(105, 60)
                 bottomRightStack.centerAlignContent()
 
-                // 樹脂獲取
+                // 树脂获取
                 let resinStack = topLeftStack.addStack()
                 let resinStack2 = topLeftStack.addStack()
                 let resinTipStack = topLeftStack.addStack()
@@ -665,7 +665,7 @@ class Widget extends DmYY {
                 ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinElement = resinStack.addText(`當前樹脂：`)
+                let ResinElement = resinStack.addText(`当前树脂：`)
                 ResinElement.textColor = Color.dynamic(Color.black(), Color.white())
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -690,7 +690,7 @@ class Widget extends DmYY {
                 ResinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 resinStack.centerAlignContent()
 
-                // 寶錢獲取
+                // 宝钱获取
                 let coinStack = bottomLeftStack.addStack()
                 let coinStack2 = bottomLeftStack.addStack()
                 let coinTipStack = bottomLeftStack.addStack()
@@ -698,7 +698,7 @@ class Widget extends DmYY {
                 CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
-                let CoinElement = coinStack.addText(`洞天寶錢：`)
+                let CoinElement = coinStack.addText(`洞天宝钱：`)
                 CoinElement.textColor = Color.dynamic(Color.black(), Color.white())
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -723,13 +723,13 @@ class Widget extends DmYY {
                 CoinTipElement.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 coinStack.centerAlignContent()
 
-                // 周本獲取
+                // 周本获取
                 let resinDiscountStack = topRightStack.addStack()
                 let ResinDiscountIconElement = resinDiscountStack.addImage(discountIcon)
                 ResinDiscountIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinDiscountIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinDiscountStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinDiscountTextElement = resinDiscountStack.addText(`半價周本：`)
+                let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本：`)
                 ResinDiscountTextElement.textColor = Color.dynamic(Color.black(), Color.white())
                 ResinDiscountTextElement.textOpacity = 0.6
                 ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -744,7 +744,7 @@ class Widget extends DmYY {
                 ResinDiscountTextElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                 resinDiscountStack.centerAlignContent()
 
-                //每日委托獲取
+                //每日委托获取
                 let taskStack = topRightStack.addStack()
                 let TaskIconElement = taskStack.addImage(taskIcon)
                 TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
@@ -764,12 +764,12 @@ class Widget extends DmYY {
                 TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                 taskStack.centerAlignContent()
 
-                // 參量質變儀
+                // 参量质变仪
                 var stackText = topRightStack.addStack()
                 var transformIcon = stackText.addImage(transformerIcon)
                 transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 stackText.addSpacer(ThemeConfig.iconSpacer)
-                var textItem = stackText.addText("參量質變：")
+                var textItem = stackText.addText("参量质变：")
                 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 textItem.textColor = Color.dynamic(Color.black(), Color.white())
                 textItem.textOpacity = 0.6
@@ -785,7 +785,7 @@ class Widget extends DmYY {
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
                         if (+transformer_recovery_time.Hour > 0) {
-                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 時`)
+                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
                                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
@@ -801,7 +801,7 @@ class Widget extends DmYY {
                         }
                 }
 
-                // 派遣任務獲取
+                // 派遣任务获取
                 let expeditionsTitleStack = topRightStack.addStack()
                 let isHasFinished = false
                 let minCoverTime = 0
@@ -846,7 +846,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -860,7 +860,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -870,10 +870,10 @@ class Widget extends DmYY {
                         minCoverTimeElemnet2.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
                 }
 
-                // 今日素材標題
+                // 今日素材标题
                 let TodayMaterialTitle = finalHorizon.addStack()
                 finalHorizon.addSpacer()
-                // 添加派蒙圖片
+                // 添加派蒙图片
                 let paimon = finalHorizon.addStack()
                 paimon.addSpacer()
                 let PaimonElement = paimon.addImage(paimonIcon)
@@ -899,11 +899,11 @@ class Widget extends DmYY {
                         currentDay.setDate(currentDay.getDate() - 1)
                 }
                 let [avatarMaterials, weaponsMaterials] = await getWeeklyMaterialData()
-                let avatorheader = AvatorMaterial.addText(`角色天賦： `)
+                let avatorheader = AvatorMaterial.addText(`角色天赋： `)
                 avatorheader.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 avatorheader.font = Font.mediumSystemFont(12)
                 if (currentDay.getDay() === 0) {
-                        let all = AvatorMaterial.addText("任君挑選，享受周日吧~")
+                        let all = AvatorMaterial.addText("任君挑选，享受周日吧~")
                         all.font = Font.mediumSystemFont(12)
                         all.textOpacity = 0.5
                 } else {
@@ -939,7 +939,7 @@ class Widget extends DmYY {
                 weaponheader.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 weaponheader.font = Font.mediumSystemFont(12)
                 if (currentDay.getDay() === 0) {
-                        let all = WeaponMaterial.addText("任君挑選，享受周日吧~")
+                        let all = WeaponMaterial.addText("任君挑选，享受周日吧~")
                         all.font = Font.mediumSystemFont(12)
                         all.textOpacity = 0.5
                 } else {
@@ -981,11 +981,11 @@ class Widget extends DmYY {
                 const settings = this.getSettings();
                 const arg = settings['type'] || '1';
                 let a = new Alert();
-                a.title = '打開方式';
-                a.message = '點擊小組件瀏覽熱點的方式';
-                a.addAction((arg === '0' ? '✅ ' : '') + '微博客戶端');
+                a.title = '打开方式';
+                a.message = '点击小组件浏览热点的方式';
+                a.addAction((arg === '0' ? '✅ ' : '') + '微博客户端');
                 a.addAction((arg === '1' ? '✅ ' : '') + 'Vvebo');
-                a.addCancelAction('取消設置');
+                a.addCancelAction('取消设置');
                 let i = await a.presentSheet();
                 if (i === -1) return;
                 this.settings['type'] = String(i);
@@ -1020,9 +1020,9 @@ class Widget extends DmYY {
 }
 
 /**
-* 返回原神便箋信息
+* 返回原神便笺信息
 *
-* @return {Promise<ResinResponse>} 便箋數據
+* @return {Promise<ResinResponse>} 便笺数据
 */
 async function getData() {
         let randomStr = randomIntFromInterval(100000, 200000)
@@ -1046,9 +1046,9 @@ async function getData() {
 }
 
 /**
- * 返回原神便箋信息(國際服)
+ * 返回原神便笺信息(国际服)
  *
- * @return {Promise<ResinResponse>} 便箋數據
+ * @return {Promise<ResinResponse>} 便笺数据
  */
 async function getDataOs() {
         let randomStr = randomStrGen(6)
@@ -1091,7 +1091,7 @@ async function getTime(time) {
 }
 
 async function getClock(time) {
-        if (+time <= 0) return "已滿"
+        if (+time <= 0) return "已满"
 
         let timeNow = Date.now()
         let now = new Date(timeNow)
@@ -1112,34 +1112,34 @@ async function getClock(time) {
                 str = "次日"
         }
 
-        return " " + str + ", " + timeRecovery.getHours() + "點" + timeRecovery.getMinutes() + "分"
+        return " " + str + ", " + timeRecovery.getHours() + "点" + timeRecovery.getMinutes() + "分"
 }
 
-// 獲取每日素材信息
+// 获取每日素材信息
 async function getWeeklyMaterialData() {
         const RegionAbbr = { "MD": "蒙德", "LY": "璃月", "DQ": "稻妻" };
         const AvatarMaterial = new Map([
                 ["自由", { day: [1, 4], loc: "MD", icon: ziyouIcon }],
-                ["繁榮", { day: [1, 4], loc: "LY", icon: fanrongIcon }],
+                ["繁荣", { day: [1, 4], loc: "LY", icon: fanrongIcon }],
                 ["浮世", { day: [1, 4], loc: "DQ", icon: fushiIcon }],
-                ["抗爭", { day: [2, 5], loc: "MD", icon: kangzhengIcon }],
-                ["勤勞", { day: [2, 5], loc: "LY", icon: qinlaoIcon }],
-                ["風雅", { day: [2, 5], loc: "DQ", icon: fengyaIcon }],
-                ["詩文", { day: [3, 6], loc: "MD", icon: shiwenIcon }],
-                ["黃金", { day: [3, 6], loc: "LY", icon: huangjinIcon }],
+                ["抗争", { day: [2, 5], loc: "MD", icon: kangzhengIcon }],
+                ["勤劳", { day: [2, 5], loc: "LY", icon: qinlaoIcon }],
+                ["风雅", { day: [2, 5], loc: "DQ", icon: fengyaIcon }],
+                ["诗文", { day: [3, 6], loc: "MD", icon: shiwenIcon }],
+                ["黄金", { day: [3, 6], loc: "LY", icon: huangjinIcon }],
                 ["天光", { day: [3, 6], loc: "DQ", icon: tianguangIcon }]
         ])  // Start from 1: monday
 
         const WeaponsMaterial = new Map([
                 ["高塔孤王", { day: [1, 4], loc: "MD", icon: gaotaIcon }],
-                ["孤雲寒林", { day: [1, 4], loc: "LY", icon: guyunIcon }],
-                ["遠海夷地", { day: [1, 4], loc: "DQ", icon: yuanhaiIcon }],
-                ["凜風奔狼", { day: [2, 5], loc: "MD", icon: lingfengIcon }],
-                ["霧海雲間", { day: [2, 5], loc: "LY", icon: wuhaiIcon }],
-                ["鳴神禦靈", { day: [2, 5], loc: "DQ", icon: mingshenIcon }],
-                ["獅牙鬥士", { day: [3, 6], loc: "MD", icon: shiyaIcon }],
-                ["漆黑隕鐵", { day: [3, 6], loc: "LY", icon: qiheiIcon }],
-                ["今昔劇畫", { day: [3, 6], loc: "DQ", icon: jinxiIcon }]
+                ["孤云寒林", { day: [1, 4], loc: "LY", icon: guyunIcon }],
+                ["远海夷地", { day: [1, 4], loc: "DQ", icon: yuanhaiIcon }],
+                ["凛风奔狼", { day: [2, 5], loc: "MD", icon: lingfengIcon }],
+                ["雾海云间", { day: [2, 5], loc: "LY", icon: wuhaiIcon }],
+                ["鸣神御灵", { day: [2, 5], loc: "DQ", icon: mingshenIcon }],
+                ["狮牙斗士", { day: [3, 6], loc: "MD", icon: shiyaIcon }],
+                ["漆黑陨铁", { day: [3, 6], loc: "LY", icon: qiheiIcon }],
+                ["今昔剧画", { day: [3, 6], loc: "DQ", icon: jinxiIcon }]
         ]);
 
         for (let [key, value] of AvatarMaterial.entries()) {
@@ -1554,4 +1554,3 @@ async function loadPaimonIcon() {
 
 
 await Runing(Widget);
-
