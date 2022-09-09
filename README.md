@@ -2,6 +2,9 @@
 
 僅有 "genshinwidget_dynamic.js" 此小工具的字體轉為繁體，為尊重作者，基礎設置將導向至原作者的github。
 
+樹脂查詢
+https://drive.google.com/file/d/1hkOSXunIEQ5nHT3DSK6NjHhqG1Bh1lMJ/view?usp=sharing
+使用方式可參考
 ## 注意事項
 1. 本Javascipt腳本適用於iOS的 `Scriptable` APP，使用前請下載。
 2. 遇到問題發issue前請檢查操作的步驟，特別是注意 `uid` 的填寫是否正確。
