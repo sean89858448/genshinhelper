@@ -1,10 +1,11 @@
 # genshinhelper 繁體版
 
+僅有 "genshinwidget_dynamic.js" 此小工具的字體轉為繁體，為尊重作者，基礎設置將導向至原作者的github。
+
 ## 注意事項
 1. 本Javascipt腳本適用於iOS的 `Scriptable` APP，使用前請下載。
 2. 遇到問題發issue前請檢查操作的步驟，特別是注意 `uid` 的填寫是否正確。
 3. 使用前請先在js腳本中添加配置(複製後填寫對應的 `uid` 和 `cookie` )，必須加入到腳本標示的位置：  
-4. genshinwidget_dynamic.js 僅有此小工具的字體轉為繁體，為尊重作者，基礎設置將導向至原作者的github。
 ```
 config[0] = "uid"
 config[1] = "cn_gf01"
