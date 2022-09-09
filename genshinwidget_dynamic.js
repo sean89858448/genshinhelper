@@ -174,7 +174,7 @@ class Widget extends DmYY {
                 ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinElement = resinStack.addText(`当前树脂：`)
+                let ResinElement = resinStack.addText(`當前樹脂：`)
                 ResinElement.textColor = this.widgetColor
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -207,7 +207,7 @@ class Widget extends DmYY {
                 CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
-                let CoinElement = coinStack.addText(`洞天宝钱：`)
+                let CoinElement = coinStack.addText(`洞天寶錢：`)
                 CoinElement.textColor = this.widgetColor
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -374,7 +374,7 @@ class Widget extends DmYY {
                 CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
-                let CoinElement = coinStack.addText(`洞天宝钱：`)
+                let CoinElement = coinStack.addText(`洞天寶錢：`)
                 CoinElement.textColor = this.widgetColor
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -405,7 +405,7 @@ class Widget extends DmYY {
                 ResinDiscountIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinDiscountIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinDiscountStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本：`)
+                let ResinDiscountTextElement = resinDiscountStack.addText(`半價週本：`)
                 ResinDiscountTextElement.textColor = this.widgetColor
                 ResinDiscountTextElement.textOpacity = 0.6
                 ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -426,7 +426,7 @@ class Widget extends DmYY {
                 TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 TaskIconElement.cornerRadius = ThemeConfig.iconRadius
                 taskStack.addSpacer(ThemeConfig.iconSpacer)
-                let TaskElement = taskStack.addText(`每日委托：`)
+                let TaskElement = taskStack.addText(`每日委託：`)
                 TaskElement.textColor = this.widgetColor
                 TaskElement.textOpacity = 0.6
                 TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -445,7 +445,7 @@ class Widget extends DmYY {
                 var transformIcon = stackText.addImage(transformerIcon)
                 transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 stackText.addSpacer(ThemeConfig.iconSpacer)
-                var textItem = stackText.addText("参量质变：")
+                var textItem = stackText.addText("參量質變：")
                 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 textItem.textColor = this.widgetColor
                 textItem.textOpacity = 0.6
@@ -522,7 +522,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = this.widgetColor
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -538,7 +538,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = this.widgetColor
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -698,7 +698,7 @@ class Widget extends DmYY {
                 CoinIconElement.imageSize = new Size(ThemeConfig.coinSize, ThemeConfig.coinSize)
                 CoinIconElement.cornerRadius = ThemeConfig.coinRadius
                 coinStack.addSpacer(5)
-                let CoinElement = coinStack.addText(`洞天宝钱：`)
+                let CoinElement = coinStack.addText(`洞天寶錢：`)
                 CoinElement.textColor = Color.dynamic(Color.black(), Color.white())
                 CoinElement.textOpacity = 0.6
                 CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -729,7 +729,7 @@ class Widget extends DmYY {
                 ResinDiscountIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinDiscountIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinDiscountStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本：`)
+                let ResinDiscountTextElement = resinDiscountStack.addText(`半價週本：`)
                 ResinDiscountTextElement.textColor = Color.dynamic(Color.black(), Color.white())
                 ResinDiscountTextElement.textOpacity = 0.6
                 ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -750,7 +750,7 @@ class Widget extends DmYY {
                 TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 TaskIconElement.cornerRadius = ThemeConfig.iconRadius
                 taskStack.addSpacer(ThemeConfig.iconSpacer)
-                let TaskElement = taskStack.addText(`每日委托：`)
+                let TaskElement = taskStack.addText(`每日委託`)
                 TaskElement.textColor = Color.dynamic(Color.black(), Color.white())
                 TaskElement.textOpacity = 0.6
                 TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -769,7 +769,7 @@ class Widget extends DmYY {
                 var transformIcon = stackText.addImage(transformerIcon)
                 transformIcon.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 stackText.addSpacer(ThemeConfig.iconSpacer)
-                var textItem = stackText.addText("参量质变：")
+                var textItem = stackText.addText("參量質變：")
                 textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
                 textItem.textColor = Color.dynamic(Color.black(), Color.white())
                 textItem.textOpacity = 0.6
@@ -846,7 +846,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#FC766A"), new Color("#FC766A"))
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -860,7 +860,7 @@ class Widget extends DmYY {
                         expeditionsTitleElement2.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         expeditionsTitleElement2.textOpacity = 1
                         expeditionsTitleElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
-                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩余 ${await getTime(minCoverTime)} `)
+                        let minCoverTimeElemnet = expeditionsStack2.addText(` -  最快剩餘 ${await getTime(minCoverTime)} `)
                         minCoverTimeElemnet.textColor = Color.dynamic(Color.black(), Color.white())
                         minCoverTimeElemnet.textOpacity = 0.5
                         minCoverTimeElemnet.font = Font.mediumRoundedSystemFont(ThemeConfig.tipSize)
@@ -1112,7 +1112,7 @@ async function getClock(time) {
                 str = "次日"
         }
 
-        return " " + str + ", " + timeRecovery.getHours() + "点" + timeRecovery.getMinutes() + "分"
+        return " " + str + ", " + timeRecovery.getHours() + "點" + timeRecovery.getMinutes() + "分"
 }
 
 // 获取每日素材信息
