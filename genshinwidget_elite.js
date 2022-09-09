@@ -2,40 +2,40 @@
 // These must be at the very top of the file. Do not edit.
 // icon-color: deep-gray; icon-glyph: moon;
 
-// ========= ↓将生成的配置粘贴这以下↓=========
+// ========= ↓將生成的配置粘貼這以下↓=========
 
-// ========= ↑将生成的配置粘贴这以上↑ ========
+// ========= ↑將生成的配置粘貼這以上↑ ========
 
 /**
  * @typedef {Object} ResinResponse
- * @property {number} total_task_num - 每日委托任务
- * @property {number} finished_task_num - 每日委托完成数
- * @property {boolean} is_extra_task_reward_received - 每日委托额外奖励领取情况
- * @property {number} max_resin - 树脂上限
- * @property {number} current_resin - 当前树脂
- * @property {number} max_home_coin - 洞天宝钱上限
- * @property {number} current_home_coin - 当前洞天宝钱
- * @property {string} resin_recovery_time - 树脂预计恢复时间
- * @property {string} home_coin_recovery_time - 洞天宝钱预计恢复时间
- * @property {number} resin_discount_num_limit - 强敌每周减半次数上限
- * @property {number} remain_resin_discount_num - 强敌每周减半次数剩余
+ * @property {number} total_task_num - 每日委托任務
+ * @property {number} finished_task_num - 每日委托完成數
+ * @property {boolean} is_extra_task_reward_received - 每日委托額外獎勵領取情况
+ * @property {number} max_resin - 樹脂上限
+ * @property {number} current_resin - 當前樹脂
+ * @property {number} max_home_coin - 洞天寶錢上限
+ * @property {number} current_home_coin - 當前洞天寶錢
+ * @property {string} resin_recovery_time - 樹脂預計恢復時間
+ * @property {string} home_coin_recovery_time - 洞天寶錢預計恢復時間
+ * @property {number} resin_discount_num_limit - 强敵每周减半次數上限
+ * @property {number} remain_resin_discount_num - 强敵每周减半次數剩餘
  * @property {number} max_expedition_num - 探索派遣限制
- * @property {number} current_expedition_num - 当前探索派遣人数
- * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人员详情 
- * @property {string} _time_string - 便笺数据获取时间 - 额外添加的时间戳属性
+ * @property {number} current_expedition_num - 當前探索派遣人數
+ * @property {Array<{ status: string, avatar_side_icon: string, remained_time: string }>} expeditions - 派遣人員詳情 
+ * @property {string} _time_string - 便箋數據獲取時間 - 額外添加的時間戳屬性
  */
 
-// 如果上方的配置缺失，将会显示一个简单的提示语句，而非直接闪退
+// 如果上方的配置缺失，將會顯示一個簡單的提示語句，而非直接閃退
 if (!config[0] || !config[1] || !config[2]) {
     const widget = new ListWidget()
-    widget.addText('配置缺失，\n请打开脚本，\n添加配置。')
+    widget.addText('配置缺失，\n請打開脚本，\n添加配置。')
     if (config.runsInWidget) {
         Script.setWidget(widget)
     } else {
         widget.presentMedium()
     }
     Script.complete()
-    return  // 确保在Scriptable软件内的时候会停止运行余下脚本
+    return  // 確保在Scriptable軟件內的時候會停止運行餘下脚本
 }
 
 const file = FileManager.local()
@@ -65,7 +65,7 @@ if (!resin) {
     resin = JSON.parse(file.readString(responseSavePath))
 }
 
-// 背景图片定义
+// 背景圖片定義
 const darkbackground = await loaddarkbackground()
 const darksmallbackground = await loaddarksmallbackground()
 const darkuidbackground = await loaddarkuidbackground()
@@ -75,7 +75,7 @@ const lightsmallbackground = await loadlightsmallbackground()
 const lightuidbackground = await loadlightuidbackground()
 const lightavatarbackground = await loadlightavatarbackground()
 
-// 各类图标定义
+// 各類圖標定義
 const resinIcon = await loadResinIcon()
 const coinIcon = await loadCoinIcon()
 const discountIcon = await loadDiscountIcon()
@@ -84,7 +84,7 @@ const avatarIcon = await loadAvatarIcon()
 const transformerIcon = await loadTransformerIcon()
 const paimonIcon = await loadPaiMonIcon()
 
-// 指示符号
+// 指示符號
 const darknoneIcon = await loaddarkNoneIcon()
 const darkingIcon = await loaddarkIngIcon()
 const darkyesIcon = await loaddarkYesIcon()
@@ -94,20 +94,20 @@ const lightyesIcon = await loadlightYesIcon()
 const lightdlineIcon = await loadlightdLineIcon()
 const darkdlineIcon = await loaddarkdLineIcon()
 
-// 定义画布
+// 定義畫布
 const canvas = new DrawContext()
 const canvSize = 140
 const canvRadius = 80
 const canvWidth = 10
-// 定义画布图绘制的透明属性
+// 定義畫布圖繪製的透明屬性
 canvas.opaque = false
 
-// 进度条长度
+// 進度條長度
 const primaryProgressWidth = 45
 const transformerProgressWidth = 28
-// 进度条高度
+// 進度條高度
 const h = 2
-// 定义颜色和图片切换
+// 定義顔色和圖片切換
 const ThemeColor = Device.isUsingDarkAppearance() ? {
     infoColor: new Color("DACDBA"),
     textColor: new Color("AEA080"),
@@ -170,7 +170,7 @@ async function createWidget() {
 }
 
 /**
-     * 渲染小尺寸组件
+     * 渲染小尺寸組件
      */
 async function renderSmall(widget) {
     const ThemeConfig = Device.isPad() ? {
@@ -202,7 +202,7 @@ async function renderSmall(widget) {
     let headerStack = widget.addStack()
     headerStack.size = new Size(140, 15)
     headerStack.centerAlignContent()
-    // 标题
+    // 標題
     let stacktime = headerStack.addStack()
     stacktime.backgroundColor = ThemeColor.titleColor
     stacktime.size = new Size(50, 13)
@@ -219,7 +219,7 @@ async function renderSmall(widget) {
     var textItem = stackHeader.addText(`UID: ${config[0]}`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.infoColor
-    // 添加更新时间
+    // 添加更新時間
     var textItem = stacktime.addText(`${resin._time_string}更新`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.infoColor
@@ -278,7 +278,7 @@ async function renderSmall(widget) {
     RightRow2.cornerRadius = 10
     RightRow2.backgroundColor = ThemeColor.stackColor
 
-    // 树脂获取
+    // 樹脂獲取
     LeftStack11.addSpacer()
     let ResinIconElement = LeftStack11.addImage(resinIcon)
     ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
@@ -303,7 +303,7 @@ async function renderSmall(widget) {
     let progressResin = LeftStack17.addImage(createProgress(resin.max_resin, resin.current_resin, primaryProgressWidth))
     progressResin.imageSize = new Size(primaryProgressWidth, h)
     LeftStack17.addSpacer()
-    let ResinElement = resinTipStack.addText(`原粹树脂`)
+    let ResinElement = resinTipStack.addText(`原粹樹脂`)
     ResinElement.textColor = ThemeColor.textColor
     ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let ResinElement2 = resinStack.addText(`${resin.current_resin}`)
@@ -313,7 +313,7 @@ async function renderSmall(widget) {
     ResinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     ResinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.infosmallSize)
     if (resin.current_resin === resin.max_resin) {
-        let ResinTipElement2 = resinTime.addText(`原粹树脂已满`)
+        let ResinTipElement2 = resinTime.addText(`原粹樹脂已滿`)
         ResinTipElement2.textColor = ThemeColor.labelColor
         ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     } else {
@@ -322,7 +322,7 @@ async function renderSmall(widget) {
         ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
 
-    // 每日委托获取
+    // 每日委托獲取
     let TaskIcon = RightRow1.addStack()
     TaskIcon.layoutHorizontally()
     TaskIcon.centerAlignContent()
@@ -338,7 +338,7 @@ async function renderSmall(widget) {
         let taskText = RightRow1.addStack()
         RightRow1.addSpacer(3)
         taskText.addSpacer()
-        let TaskElement2 = taskText.addText(`已领取`)
+        let TaskElement2 = taskText.addText(`已領取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
         TaskElement2.textColor = ThemeColor.infoColor
         taskText.addSpacer()
@@ -348,7 +348,7 @@ async function renderSmall(widget) {
         let taskText = RightRow1.addStack()
         RightRow1.addSpacer(3)
         taskText.addSpacer()
-        let TaskElement2 = taskText.addText(`未领取`)
+        let TaskElement2 = taskText.addText(`未領取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
         TaskElement2.textColor = ThemeColor.labelColor
         taskText.addSpacer()
@@ -358,7 +358,7 @@ async function renderSmall(widget) {
         taskText.addSpacer()
         let TaskElement2 = taskText.addText(`剩`)
         let TaskElement3 = taskText.addText(` ${remaintasknum} `)
-        let TaskElement4 = taskText.addText(`个`)
+        let TaskElement4 = taskText.addText(`個`)
         // TaskElement2.centerAlignText()
         TaskElement2.textOpacity = 1
         TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
@@ -372,7 +372,7 @@ async function renderSmall(widget) {
         taskText.addSpacer()
         taskText.centerAlignContent()
     }
-    // 指示标记
+    // 指示標記
     RightRow1.addSpacer(3)
     let starTask = RightRow1.addStack()
     starTask.addSpacer()
@@ -397,7 +397,7 @@ async function renderSmall(widget) {
     starTask.addSpacer()
     RightRow1.addSpacer(4)
 
-    // 派遣任务获取
+    // 派遣任務獲取
     let expeditionsIconStack = RightRow2.addStack()
     expeditionsIconStack.centerAlignContent()
     let isHasFinished = false
@@ -422,7 +422,7 @@ async function renderSmall(widget) {
         let expeditionsTextStack = RightRow2.addStack()
         RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
-        let minRemainingTimeElement = expeditionsTextStack.addText(`请添加派遣角色`)
+        let minRemainingTimeElement = expeditionsTextStack.addText(`請添加派遣角色`)
         minRemainingTimeElement.textColor = ThemeColor.labelColor
         minRemainingTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         expeditionsTextStack.addSpacer()
@@ -456,7 +456,7 @@ async function renderSmall(widget) {
         let expeditionsTextStack = RightRow2.addStack()
         RightRow2.addSpacer(3)
         expeditionsTextStack.addSpacer()
-        let minRemainingTimeElement = expeditionsTextStack.addText(`派遣奖励可领取`)
+        let minRemainingTimeElement = expeditionsTextStack.addText(`派遣獎勵可領取`)
         minRemainingTimeElement.textColor = ThemeColor.labelColor
         minRemainingTimeElement.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
         expeditionsTextStack.addSpacer()
@@ -483,7 +483,7 @@ async function renderSmall(widget) {
     return widget
 }
 /**
-     * 渲染中尺寸组件
+     * 渲染中尺寸組件
      */
 async function renderMedium(widget) {
     const ThemeConfig = Device.isPad() ? {
@@ -519,7 +519,7 @@ async function renderMedium(widget) {
     let headerStack = widget.addStack()
     headerStack.size = new Size(322, 15)
     headerStack.centerAlignContent()
-    // 标题
+    // 標題
     let stacktime = headerStack.addStack()
     stacktime.backgroundColor = ThemeColor.titleColor
     stacktime.size = new Size(88, 13)
@@ -540,31 +540,31 @@ async function renderMedium(widget) {
     var textItem = stackHeader.addText(`UID: ${config[0]}`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.infoColor
-    // 添加服务器
+    // 添加服務器
     let server
     switch (config[1]) {
         case "cn_qd01":
-            server = stackServer.addText(`世界树`)
+            server = stackServer.addText(`世界樹`)
             break;
         case "os_asia":
-            server = stackServer.addText(`亚服`)
+            server = stackServer.addText(`亞服`)
             break;
         case "os_euro":
-            server = stackServer.addText(`欧服`)
+            server = stackServer.addText(`歐服`)
             break;
         case "os_usa":
             server = stackServer.addText(`美服`)
             break;
         case "os_cht":
-            server = stackServer.addText(`港澳台服`)
+            server = stackServer.addText(`港澳臺服`)
             break;
         default:
-            server = stackServer.addText(`天空岛`)
+            server = stackServer.addText(`天空島`)
             break;
     }
     server.textColor = ThemeColor.infoColor
     server.font = Font.boldSystemFont(ThemeConfig.titleSize)
-    // 添加更新时间
+    // 添加更新時間
     var textItem = stacktime.addText(`最近${resin._time_string}更新`)
     textItem.font = Font.boldRoundedSystemFont(ThemeConfig.titleSize)
     textItem.textColor = ThemeColor.infoColor
@@ -668,7 +668,7 @@ async function renderMedium(widget) {
     RightRow2.cornerRadius = 10
     RightRow2.backgroundColor = ThemeColor.stackColor
 
-    // 树脂获取
+    // 樹脂獲取
     LeftStack11.addSpacer()
     let ResinIconElement = LeftStack11.addImage(resinIcon)
     ResinIconElement.imageSize = new Size(ThemeConfig.iconlargeSize, ThemeConfig.iconlargeSize)
@@ -693,7 +693,7 @@ async function renderMedium(widget) {
     let progressResin = LeftStack17.addImage(createProgress(resin.max_resin, resin.current_resin, primaryProgressWidth))
     progressResin.imageSize = new Size(primaryProgressWidth, h)
     LeftStack17.addSpacer()
-    let ResinElement = resinTipStack.addText(`原粹树脂`)
+    let ResinElement = resinTipStack.addText(`原粹樹脂`)
     ResinElement.textColor = ThemeColor.textColor
     ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let ResinElement2 = resinStack.addText(`${resin.current_resin}`)
@@ -703,7 +703,7 @@ async function renderMedium(widget) {
     ResinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     ResinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.infosmallSize)
     if (resin.current_resin === resin.max_resin) {
-        let ResinTipElement2 = resinTime.addText(`原粹树脂已满`)
+        let ResinTipElement2 = resinTime.addText(`原粹樹脂已滿`)
         ResinTipElement2.textColor = ThemeColor.labelColor
         ResinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     } else {
@@ -713,7 +713,7 @@ async function renderMedium(widget) {
     }
 
 
-    // 宝钱获取
+    // 寶錢獲取
     LeftStack21.addSpacer()
     let CoinIconElement = LeftStack21.addImage(coinIcon)
     CoinIconElement.imageSize = new Size(ThemeConfig.iconlargeSize, ThemeConfig.iconlargeSize)
@@ -738,7 +738,7 @@ async function renderMedium(widget) {
     let progressCoin = LeftStack27.addImage(createProgress(resin.max_home_coin, resin.current_home_coin, primaryProgressWidth))
     progressCoin.imageSize = new Size(primaryProgressWidth, h)
     LeftStack27.addSpacer()
-    let CoinElement = coinTipStack.addText(`洞天宝钱`)
+    let CoinElement = coinTipStack.addText(`洞天寶錢`)
     CoinElement.textColor = ThemeColor.textColor
     CoinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     let CoinElement2 = coinStack.addText(`${resin.current_home_coin}`)
@@ -748,7 +748,7 @@ async function renderMedium(widget) {
     CoinElement2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infoSize)
     CoinElement3.font = new Font("AvenirNextCondensed-MediumItalic", ThemeConfig.infosmallSize)
     if (resin.current_home_coin === resin.max_home_coin) {
-        let CoinTipElement2 = coinTime.addText(`洞天财瓮已满`)
+        let CoinTipElement2 = coinTime.addText(`洞天財瓮已滿`)
         CoinTipElement2.textColor = ThemeColor.labelColor
         CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     } else {
@@ -757,7 +757,7 @@ async function renderMedium(widget) {
         CoinTipElement2.font = Font.boldRoundedSystemFont(ThemeConfig.tipSize)
     }
 
-    // 每日委托获取
+    // 每日委托獲取
     let TaskIcon = RightStack1.addStack()
     TaskIcon.layoutHorizontally()
     TaskIcon.addSpacer()
@@ -775,7 +775,7 @@ async function renderMedium(widget) {
         let taskText = RightStack1.addStack()
         RightStack1.addSpacer(3)
         taskText.addSpacer()
-        let TaskElement2 = taskText.addText(`已领取`)
+        let TaskElement2 = taskText.addText(`已領取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
         TaskElement2.textColor = ThemeColor.infoColor
         taskText.addSpacer()
@@ -785,7 +785,7 @@ async function renderMedium(widget) {
         let taskText = RightStack1.addStack()
         RightStack1.addSpacer(3)
         taskText.addSpacer()
-        let TaskElement2 = taskText.addText(`未领取`)
+        let TaskElement2 = taskText.addText(`未領取`)
         TaskElement2.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
         TaskElement2.textColor = ThemeColor.labelColor
         taskText.addSpacer()
@@ -795,7 +795,7 @@ async function renderMedium(widget) {
         taskText.addSpacer()
         let TaskElement2 = taskText.addText(`剩`)
         let TaskElement3 = taskText.addText(` ${remaintasknum} `)
-        let TaskElement4 = taskText.addText(`个`)
+        let TaskElement4 = taskText.addText(`個`)
         // TaskElement2.centerAlignText()
         TaskElement2.textOpacity = 1
         TaskElement2.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
@@ -810,7 +810,7 @@ async function renderMedium(widget) {
         taskText.centerAlignContent()
     }
 
-    // 指示标记
+    // 指示標記
     let starTask = RightStack1.addStack()
     starTask.addSpacer()
     if (remaintasknum === resin.total_task_num) {
@@ -835,7 +835,7 @@ async function renderMedium(widget) {
     RightStack1.addSpacer(4)
     taskStack.centerAlignContent()
 
-    // 周本获取
+    // 周本獲取
     let DiscountIcon = RightStack2.addStack()
     DiscountIcon.layoutHorizontally()
     DiscountIcon.addSpacer()
@@ -845,7 +845,7 @@ async function renderMedium(widget) {
     let resinDiscountStack = RightStack2.addStack()
     let resinDiscountText = RightStack2.addStack()
     resinDiscountStack.addSpacer(8)
-    let ResinDiscountTextElement = resinDiscountStack.addText(`半价周本`)
+    let ResinDiscountTextElement = resinDiscountStack.addText(`半價周本`)
     ResinDiscountTextElement.textColor = ThemeColor.textColor
     ResinDiscountTextElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
     resinDiscountText.addSpacer()
@@ -864,7 +864,7 @@ async function renderMedium(widget) {
     ResinDiscountTextElement4.textColor = ThemeColor.infoColor
     resinDiscountText.centerAlignContent()
     resinDiscountStack.centerAlignContent()
-    // 指示标记
+    // 指示標記
     let starDiscount = RightStack2.addStack()
     starDiscount.addSpacer()
     if (resin.remain_resin_discount_num === resin.resin_discount_num_limit) {
@@ -889,12 +889,12 @@ async function renderMedium(widget) {
     RightStack2.addSpacer(4)
     //通知提醒
     // if (resin.remain_resin_discount_num != resin.resin_discount_num_limit) {
-    //     let discountnotice = await notify('原神周本提醒', `半价还剩${resin.remain_resin_discount_num}次`)
+    //     let discountnotice = await notify('原神周本提醒', `半價還剩${resin.remain_resin_discount_num}次`)
     //     discountnotice.setWeeklyTrigger(1, 17, 4, true)
     //     discountnotice.schedule()
     // }
 
-    // 参量质变仪
+    // 參量質變儀
     let transformIcon = RightStack3.addStack()
     transformIcon.layoutHorizontally()
     transformIcon.addSpacer()
@@ -904,7 +904,7 @@ async function renderMedium(widget) {
     let stackText = RightStack3.addStack()
     stackText.centerAlignContent()
     stackText.addSpacer(8)
-    var textItem = stackText.addText("参量质变")
+    var textItem = stackText.addText("參量質變")
     textItem.font = Font.mediumSystemFont(ThemeConfig.textSize)
     textItem.textColor = ThemeColor.textColor
     const transformer_recovery_time = resin.transformer && resin.transformer.recovery_time || {}
@@ -939,7 +939,7 @@ async function renderMedium(widget) {
             textItem.textColor = ThemeColor.infoColor
             textItem2.font = new Font("AvenirNextCondensed-BoldItalic", ThemeConfig.infosmallSize)
             textItem2.textColor = ThemeColor.infoColor
-            var textItem3 = stackTipStack.addText("时")
+            var textItem3 = stackTipStack.addText("時")
             textItem3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
             textItem3.textColor = ThemeColor.infoColor
         }
@@ -969,7 +969,7 @@ async function renderMedium(widget) {
         stackTipStack.centerAlignContent()
     }
 
-    // 质变仪进度条
+    // 質變儀進度條
     let starTrans = RightStack3.addStack()
     starTrans.addSpacer()
     let startransmax = 7 * 86400
@@ -984,7 +984,7 @@ async function renderMedium(widget) {
     RightStack3.addSpacer(4)
 
 
-    // 派遣任务获取
+    // 派遣任務獲取
     let expeditionsTitleStack = RightRow2.addStack()
     expeditionsTitleStack.layoutHorizontally()
     expeditionsTitleStack.centerAlignContent()
@@ -1004,7 +1004,7 @@ async function renderMedium(widget) {
     }
     const expeditions = resin.expeditions || []
     await Promise.all(expeditions.map(async (expedition) => {
-        // 网址示例 https://.../game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yelan.png
+        // 網址示例 https://.../game_record/genshin/character_side_icon/UI_AvatarIcon_Side_Yelan.png
         const iconUrl = expedition.avatar_side_icon
         const iconPath = file.joinPath(iconSaveDirectory, iconUrl.substring(iconUrl.lastIndexOf('/') + 1))
         const icon = Image.fromFile(iconPath)
@@ -1027,13 +1027,13 @@ async function renderMedium(widget) {
             const { icon, remained_time } = expedition
             const remainingTime = parseInt(remained_time)
             let remainTime = formatExpRemainTime(remainingTime)
-            // 获取时间属性并加工
+            // 獲取時間屬性幷加工
             let ssh = remainTime[0] * 60
             let ssm = remainTime[1]
             let sss = (100 - (ssh + ssm) / 1200)
             let minsRemainingCircle = Math.floor((sss / 1) * 3.6)
             let dayRadiusOffset = 20
-            // 绘制圆环进图条文字及头像
+            // 繪製圓環進圖條文字及頭像
             if (sss >= 100) { var circleColor = ThemeColor.labelColor }
             else { var circleColor = ThemeColor.jdyhColor }
             makeCircle(
@@ -1042,7 +1042,7 @@ async function renderMedium(widget) {
                 circleColor,
                 Math.floor(minsRemainingCircle)
             )
-            //绘制人物头像属性
+            //繪製人物頭像屬性
             canvas.drawImageInRect(
                 icon, new Rect(-5, -5, 140, 140)
             )
@@ -1079,7 +1079,7 @@ async function renderMedium(widget) {
     minRemainingTimeElement3.font = Font.mediumRoundedSystemFont(ThemeConfig.textSize)
 
     if (minRemainingTime === 0) {
-        let minRemainingTimeElement4 = expeditionsTitleStack.addText(`    可领取奖励`)
+        let minRemainingTimeElement4 = expeditionsTitleStack.addText(`    可領取獎勵`)
         minRemainingTimeElement4.textColor = ThemeColor.labelColor
         minRemainingTimeElement4.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
     } else {
@@ -1092,10 +1092,10 @@ async function renderMedium(widget) {
 }
 
 /**
- * 弹出一个通知
- * @param {string} title 通知标题
- * @param {string} body 通知内容
- * @param {string} url 点击后打开的URL
+ * 彈出一個通知
+ * @param {string} title 通知標題
+ * @param {string} body 通知內容
+ * @param {string} url 點擊後打開的URL
  */
 async function notify(title, body, url, opts = {}) {
     let n = new Notification()
@@ -1107,9 +1107,9 @@ async function notify(title, body, url, opts = {}) {
 }
 
 /**
-* 返回原神便笺信息
+* 返回原神便箋信息
 *
-* @return {Promise<ResinResponse>} 便笺数据
+* @return {Promise<ResinResponse>} 便箋數據
 */
 async function getData() {
     let randomStr = randomIntFromInterval(100000, 200000)
@@ -1133,9 +1133,9 @@ async function getData() {
 }
 
 /**
- * 返回原神便笺信息(国际服)
+ * 返回原神便箋信息(國際服)
  *
- * @return {Promise<ResinResponse>} 便笺数据
+ * @return {Promise<ResinResponse>} 便箋數據
  */
 async function getDataOs() {
     let randomStr = randomStrGen(6)
@@ -1159,7 +1159,7 @@ async function getDataOs() {
     return data
 }
 
-// 进度条方法
+// 進度條方法
 function createProgress(total, completed, width) {
     const context = new DrawContext()
     context.size = new Size(width, h)
@@ -1187,7 +1187,7 @@ function createProgress(total, completed, width) {
     return context.getImage()
 }
 
-// 圆环进度条方法
+// 圓環進度條方法
 function makeCircle(radiusOffset, bgCircleColor, fgCircleColor, degree) {
     let ctr = new Point(canvSize / 2, canvSize / 2)
     CoordOffset = 0
@@ -1273,34 +1273,34 @@ async function getClock(time) {
         str = "明日"
     }
 
-    return " " + str + timeRecovery.getHours() + "点" + timeRecovery.getMinutes() + "分"
+    return " " + str + timeRecovery.getHours() + "點" + timeRecovery.getMinutes() + "分"
 }
 
-// 获取每日素材信息
+// 獲取每日素材信息
 async function getWeeklyMaterialData() {
     const RegionAbbr = { "MD": "蒙德", "LY": "璃月", "DQ": "稻妻" };
     const AvatarMaterial = new Map([
         ["自由", { day: [1, 4], loc: "MD", icon: ziyouIcon }],
-        ["繁荣", { day: [1, 4], loc: "LY", icon: fanrongIcon }],
+        ["繁榮", { day: [1, 4], loc: "LY", icon: fanrongIcon }],
         ["浮世", { day: [1, 4], loc: "DQ", icon: fushiIcon }],
-        ["抗争", { day: [2, 5], loc: "MD", icon: kangzhengIcon }],
-        ["勤劳", { day: [2, 5], loc: "LY", icon: qinlaoIcon }],
-        ["风雅", { day: [2, 5], loc: "DQ", icon: fengyaIcon }],
-        ["诗文", { day: [3, 6], loc: "MD", icon: shiwenIcon }],
-        ["黄金", { day: [3, 6], loc: "LY", icon: huangjinIcon }],
+        ["抗爭", { day: [2, 5], loc: "MD", icon: kangzhengIcon }],
+        ["勤勞", { day: [2, 5], loc: "LY", icon: qinlaoIcon }],
+        ["風雅", { day: [2, 5], loc: "DQ", icon: fengyaIcon }],
+        ["詩文", { day: [3, 6], loc: "MD", icon: shiwenIcon }],
+        ["黃金", { day: [3, 6], loc: "LY", icon: huangjinIcon }],
         ["天光", { day: [3, 6], loc: "DQ", icon: tianguangIcon }]
     ])  // Start from 1: monday
 
     const WeaponsMaterial = new Map([
         ["高塔孤王", { day: [1, 4], loc: "MD", icon: gaotaIcon }],
-        ["孤云寒林", { day: [1, 4], loc: "LY", icon: guyunIcon }],
-        ["远海夷地", { day: [1, 4], loc: "DQ", icon: yuanhaiIcon }],
-        ["凛风奔狼", { day: [2, 5], loc: "MD", icon: lingfengIcon }],
-        ["雾海云间", { day: [2, 5], loc: "LY", icon: wuhaiIcon }],
-        ["鸣神御灵", { day: [2, 5], loc: "DQ", icon: mingshenIcon }],
-        ["狮牙斗士", { day: [3, 6], loc: "MD", icon: shiyaIcon }],
-        ["漆黑陨铁", { day: [3, 6], loc: "LY", icon: qiheiIcon }],
-        ["今昔剧画", { day: [3, 6], loc: "DQ", icon: jinxiIcon }]
+        ["孤雲寒林", { day: [1, 4], loc: "LY", icon: guyunIcon }],
+        ["遠海夷地", { day: [1, 4], loc: "DQ", icon: yuanhaiIcon }],
+        ["凜風奔狼", { day: [2, 5], loc: "MD", icon: lingfengIcon }],
+        ["霧海雲間", { day: [2, 5], loc: "LY", icon: wuhaiIcon }],
+        ["鳴神禦靈", { day: [2, 5], loc: "DQ", icon: mingshenIcon }],
+        ["獅牙鬥士", { day: [3, 6], loc: "MD", icon: shiyaIcon }],
+        ["漆黑隕鐵", { day: [3, 6], loc: "LY", icon: qiheiIcon }],
+        ["今昔劇畫", { day: [3, 6], loc: "DQ", icon: jinxiIcon }]
     ]);
 
     for (let [key, value] of AvatarMaterial.entries()) {
