@@ -682,7 +682,7 @@ class DmYY {
       {
         icon: { name: 'photo', color: '#13c2c2' },
         type: 'input',
-        title: '白天背景顏色',
+        title: '白天背景颜色',
         desc: '请自行去网站上搜寻颜色（Hex 颜色）\n支持渐变色，各颜色之间以英文逗号分隔',
         val: 'lightBgColor',
       },
