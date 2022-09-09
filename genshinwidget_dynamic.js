@@ -72,7 +72,7 @@ class Widget extends DmYY {
                 this.name = '原神助手';
                 this.en = 'genshinhelper';
                 if (config.runsInApp) {
-                        this.registerAction('基础设置', this.setWidgetConfig);
+                        this.registerAction('基礎設置', this.setWidgetConfig);
                         //this.registerAction('插件设置', this.actionSetting);
                 }
         }
@@ -903,7 +903,7 @@ class Widget extends DmYY {
                 avatorheader.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 avatorheader.font = Font.mediumSystemFont(12)
                 if (currentDay.getDay() === 0) {
-                        let all = AvatorMaterial.addText("任君挑选，享受周日吧~")
+                        let all = AvatorMaterial.addText("任君挑選，享受周日吧~")
                         all.font = Font.mediumSystemFont(12)
                         all.textOpacity = 0.5
                 } else {
@@ -939,7 +939,7 @@ class Widget extends DmYY {
                 weaponheader.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 weaponheader.font = Font.mediumSystemFont(12)
                 if (currentDay.getDay() === 0) {
-                        let all = WeaponMaterial.addText("任君挑选，享受周日吧~")
+                        let all = WeaponMaterial.addText("任君挑選，享受周日吧~")
                         all.font = Font.mediumSystemFont(12)
                         all.textOpacity = 0.5
                 } else {
@@ -1091,7 +1091,7 @@ async function getTime(time) {
 }
 
 async function getClock(time) {
-        if (+time <= 0) return "已满"
+        if (+time <= 0) return "已滿"
 
         let timeNow = Date.now()
         let now = new Date(timeNow)
@@ -1120,26 +1120,26 @@ async function getWeeklyMaterialData() {
         const RegionAbbr = { "MD": "蒙德", "LY": "璃月", "DQ": "稻妻" };
         const AvatarMaterial = new Map([
                 ["自由", { day: [1, 4], loc: "MD", icon: ziyouIcon }],
-                ["繁荣", { day: [1, 4], loc: "LY", icon: fanrongIcon }],
+                ["繁榮", { day: [1, 4], loc: "LY", icon: fanrongIcon }],
                 ["浮世", { day: [1, 4], loc: "DQ", icon: fushiIcon }],
-                ["抗争", { day: [2, 5], loc: "MD", icon: kangzhengIcon }],
-                ["勤劳", { day: [2, 5], loc: "LY", icon: qinlaoIcon }],
-                ["风雅", { day: [2, 5], loc: "DQ", icon: fengyaIcon }],
-                ["诗文", { day: [3, 6], loc: "MD", icon: shiwenIcon }],
+                ["抗爭", { day: [2, 5], loc: "MD", icon: kangzhengIcon }],
+                ["勤勞", { day: [2, 5], loc: "LY", icon: qinlaoIcon }],
+                ["風雅", { day: [2, 5], loc: "DQ", icon: fengyaIcon }],
+                ["詩文", { day: [3, 6], loc: "MD", icon: shiwenIcon }],
                 ["黄金", { day: [3, 6], loc: "LY", icon: huangjinIcon }],
                 ["天光", { day: [3, 6], loc: "DQ", icon: tianguangIcon }]
         ])  // Start from 1: monday
 
         const WeaponsMaterial = new Map([
                 ["高塔孤王", { day: [1, 4], loc: "MD", icon: gaotaIcon }],
-                ["孤云寒林", { day: [1, 4], loc: "LY", icon: guyunIcon }],
-                ["远海夷地", { day: [1, 4], loc: "DQ", icon: yuanhaiIcon }],
-                ["凛风奔狼", { day: [2, 5], loc: "MD", icon: lingfengIcon }],
-                ["雾海云间", { day: [2, 5], loc: "LY", icon: wuhaiIcon }],
-                ["鸣神御灵", { day: [2, 5], loc: "DQ", icon: mingshenIcon }],
-                ["狮牙斗士", { day: [3, 6], loc: "MD", icon: shiyaIcon }],
-                ["漆黑陨铁", { day: [3, 6], loc: "LY", icon: qiheiIcon }],
-                ["今昔剧画", { day: [3, 6], loc: "DQ", icon: jinxiIcon }]
+                ["孤雲寒林", { day: [1, 4], loc: "LY", icon: guyunIcon }],
+                ["遠海夷地", { day: [1, 4], loc: "DQ", icon: yuanhaiIcon }],
+                ["凛風奔狼", { day: [2, 5], loc: "MD", icon: lingfengIcon }],
+                ["霧海雲間", { day: [2, 5], loc: "LY", icon: wuhaiIcon }],
+                ["鳴神御靈", { day: [2, 5], loc: "DQ", icon: mingshenIcon }],
+                ["獅牙鬥士", { day: [3, 6], loc: "MD", icon: shiyaIcon }],
+                ["漆黑隕鐵", { day: [3, 6], loc: "LY", icon: qiheiIcon }],
+                ["今昔劇畫", { day: [3, 6], loc: "DQ", icon: jinxiIcon }]
         ]);
 
         for (let [key, value] of AvatarMaterial.entries()) {
