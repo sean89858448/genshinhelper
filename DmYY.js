@@ -26,12 +26,12 @@ class DmYY {
   isNight
   _actionsIcon = {}
 
-  // 獲取 Request 對象
+  // 获取 Request 对象
   getRequest = (url = '') => {
     return new Request(url)
   }
 
-  // 發起請求
+  // 发起请求
   http = async (options = { headers: {}, url: '' }, type = 'JSON') => {
     try {
       let request
@@ -58,7 +58,7 @@ class DmYY {
     }
   }
 
-  //request 接口請求
+  //request 接口请求
   $request = {
     get: async (url = '', options = {}, type = 'JSON') => {
       let params = { ...options, method: 'GET' }
@@ -84,7 +84,7 @@ class DmYY {
     },
   }
 
-  // 獲取 boxJS 緩存
+  // 获取 boxJS 缓存
   getCache = async (key = '', notify = true) => {
     try {
       let url = 'http://' + this.prefix + '/query/boxdata'
@@ -98,8 +98,8 @@ class DmYY {
     } catch (e) {
       if (notify)
         await this.notify(
-          `${this.name} - BoxJS 數據讀取失敗`,
-          '請檢查 BoxJS 域名是否為代理覆寫的域名，如（boxjs.net 或 boxjs.com）。\n若沒有配置 BoxJS 相關模塊，請點擊通知查看教程',
+          `${this.name} - BoxJS 数据读取失败`,
+          '请检查 BoxJS 域名是否为代理复写的域名，如（boxjs.net 或 boxjs.com）。\n若没有配置 BoxJS 相关模块，请点击通知查看教程',
           'https://chavyleung.gitbook.io/boxjs/awesome/videos'
         )
       return false
@@ -118,12 +118,12 @@ class DmYY {
     console.log('It is not a string!')
   }
 
-  // 選擇圖片並緩存
+  // 选择图片并缓存
   chooseImg = async () => {
     return await Photos.fromLibrary()
   }
 
-  // 設置 widget 背景圖片
+  // 设置 widget 背景图片
   getWidgetBackgroundImage = async (widget) => {
     const backgroundImage = this.getBackgroundImage()
     if (backgroundImage) {
@@ -147,7 +147,7 @@ class DmYY {
   }
 
   /**
-   * 驗證圖片尺寸： 圖片像素超過 1000 左右的時候會導致背景無法加載
+   * 验证图片尺寸： 图片像素超过 1000 左右的时候会导致背景无法加载
    * @param img Image
    */
   verifyImage = async (img) => {
@@ -155,18 +155,18 @@ class DmYY {
       const { width, height } = img.size
       const direct = true
       if (width > 1000) {
-        const options = ['取消', '打開圖像處理']
+        const options = ['取消', '打开图像处理']
         const message =
-          '您的圖片像素為' +
+          '您的图片像素为' +
           width +
           ' x ' +
           height +
           '\n' +
-          '請將圖片' +
-          (direct ? '寬度' : '高度') +
-          '調整到 1000 以下\n' +
-          (!direct ? '寬度' : '高度') +
-          '自動適應'
+          '请将图片' +
+          (direct ? '宽度' : '高度') +
+          '调整到 1000 以下\n' +
+          (!direct ? '宽度' : '高度') +
+          '自动适应'
         const index = await this.generateAlert(message, options)
         if (index === 1)
           Safari.openInApp('https://www.sojson.com/image/change.html', false)
@@ -179,11 +179,11 @@ class DmYY {
   }
 
   /**
-   * 獲取截圖中的組件剪裁圖
+   * 获取截图中的组件剪裁图
    * 可用作透明背景
-   * 返回圖片image對象
-   * 代碼改自：https://gist.github.com/mzeryck/3a97ccd1e059b3afa3c6666d27a496c9
-   * @param {string} title 開始處理前提示用戶截圖的信息，可選（適合用在組件自定義透明背景時提示）
+   * 返回图片image对象
+   * 代码改自：https://gist.github.com/mzeryck/3a97ccd1e059b3afa3c6666d27a496c9
+   * @param {string} title 开始处理前提示用户截图的信息，可选（适合用在组件自定义透明背景时提示）
    */
   async getWidgetScreenShot(title = null) {
     // Crop an image into the specified rect.
@@ -334,8 +334,8 @@ class DmYY {
     }
 
     let message =
-      title || '開始之前，請先前往桌面，截取空白界面的截圖。然後回來繼續'
-    let exitOptions = ['我已截圖', '前去截圖 >']
+      title || '开始之前，请先前往桌面，截取空白界面的截图。然后回来继续'
+    let exitOptions = ['我已截图', '前去截图 >']
     let shouldExit = await this.generateAlert(message, exitOptions)
     if (shouldExit) return
 
@@ -344,8 +344,8 @@ class DmYY {
     let height = img.size.height
     let phone = phoneSizes()[height]
     if (!phone) {
-      message = '好像您選擇的照片不是正確的截圖，請先前往桌面'
-      await this.generateAlert(message, ['我已知曉'])
+      message = '好像您选择的照片不是正确的截图，请先前往桌面'
+      await this.generateAlert(message, ['我已知晓'])
       return
     }
 
@@ -361,7 +361,7 @@ class DmYY {
         phone = phone[typeString]
         // Otherwise, prompt the user.
       } else {
-        message = '您的📱型號是?'
+        message = '您的📱型号是?'
         let types = ['iPhone 12 mini', 'iPhone 11 Pro, XS, or X']
         let typeIndex = await this.generateAlert(message, types)
         let type = typeIndex === 0 ? 'mini' : 'x'
@@ -371,15 +371,15 @@ class DmYY {
     }
 
     // Prompt for widget size and position.
-    message = '截圖中要設置透明背景組件的尺寸類型是？'
+    message = '截图中要设置透明背景组件的尺寸类型是？'
     let sizes = ['小尺寸', '中尺寸', '大尺寸']
     let size = await this.generateAlert(message, sizes)
     let widgetSize = sizes[size]
 
-    message = '要設置透明背景的小組件在哪個位置？'
+    message = '要设置透明背景的小组件在哪个位置？'
     message +=
       height === 1136
-        ? ' （備註：當前設備只支持兩行小組件，所以下邊選項中的「中間」和「底部」的選項是一致的）'
+        ? ' （备注：当前设备只支持两行小组件，所以下边选项中的「中间」和「底部」的选项是一致的）'
         : ''
 
     // Determine image crop based on phone size.
@@ -390,8 +390,8 @@ class DmYY {
       let positions = [
         '左上角',
         '右上角',
-        '中間左',
-        '中間右',
+        '中间左',
+        '中间右',
         '左下角',
         '右下角',
       ]
@@ -415,7 +415,7 @@ class DmYY {
 
       // Medium and large widgets have a fixed x-value.
       crop.x = phone.left
-      let positions = ['頂部', '中間', '底部']
+      let positions = ['顶部', '中间', '底部']
       let _positions = ['Top', 'Middle', 'Bottom']
       let position = await this.generateAlert(message, positions)
       let key = _positions[position].toLowerCase()
@@ -424,7 +424,7 @@ class DmYY {
       crop.w = phone.medium
       crop.h = phone.large
       crop.x = phone.left
-      let positions = ['頂部', '底部']
+      let positions = ['顶部', '底部']
       let position = await this.generateAlert(message, positions)
 
       // Large widgets at the bottom have the "middle" y-value.
@@ -441,7 +441,7 @@ class DmYY {
       a.title = title
       a.message = desc
       a.addTextField('', `${this.settings[val]}`)
-      a.addAction('確定')
+      a.addAction('确定')
       a.addCancelAction('取消')
       const id = await a.presentAlert()
       if (id === -1) return
@@ -453,10 +453,10 @@ class DmYY {
   }
 
   /**
-   * 彈出輸入框
-   * @param title 標題
+   * 弹出输入框
+   * @param title 标题
    * @param desc  描述
-   * @param opt   屬性
+   * @param opt   属性
    * @returns {Promise<void>}
    */
   setAlertInput = async (title, desc, opt = {}, isSave = true) => {
@@ -466,7 +466,7 @@ class DmYY {
     Object.keys(opt).forEach((key) => {
       a.addTextField(opt[key], this.settings[key])
     })
-    a.addAction('確定')
+    a.addAction('确定')
     a.addCancelAction('取消')
     const id = await a.presentAlert()
     if (id === -1) return
@@ -483,13 +483,13 @@ class DmYY {
   }
 
   /**
-   * 設置當前項目的 boxJS 緩存
+   * 设置当前项目的 boxJS 缓存
    * @param opt key value
    * @returns {Promise<void>}
    */
   setCacheBoxJSData = async (opt = {}) => {
-    const options = ['取消', '確定']
-    const message = '代理緩存僅支持 BoxJS 相關的代理！'
+    const options = ['取消', '确定']
+    const message = '代理缓存仅支持 BoxJS 相关的代理！'
     const index = await this.generateAlert(message, options)
     if (index === 0) return
     try {
@@ -503,14 +503,14 @@ class DmYY {
       console.log(e)
       this.notify(
         this.name,
-        'BoxJS 緩存讀取失敗！點擊查看相關教程',
+        'BoxJS 缓存读取失败！点击查看相关教程',
         'https://chavyleung.gitbook.io/boxjs/awesome/videos'
       )
     }
   }
 
   /**
-   * 設置組件內容
+   * 设置组件内容
    * @returns {Promise<void>}
    */
   setWidgetConfig = async () => {
@@ -586,7 +586,7 @@ class DmYY {
               }
             } else if (item.type == 'removeBackground') {
               const options = ['取消', '清空']
-              const message = '該操作不可逆，會清空所有背景圖片！'
+              const message = '该操作不可逆，会清空所有背景图片！'
               const index = await this.generateAlert(message, options)
               if (index === 0) return
               await this.setBackgroundImage(false, true)
@@ -675,36 +675,36 @@ class DmYY {
       {
         icon: { name: 'arrow.clockwise', color: '#1890ff' },
         type: 'input',
-        title: '刷新時間',
-        desc: '刷新時間僅供參考，具體刷新時間由系統判斷，單位：分鐘',
+        title: '刷新时间',
+        desc: '刷新时间仅供参考，具体刷新时间由系统判断，单位：分钟',
         val: 'refreshAfterDate',
       },
       {
         icon: { name: 'photo', color: '#13c2c2' },
         type: 'input',
         title: '白天背景顏色',
-        desc: '請自行去網站上搜尋顏色（Hex 顏色）\n支持漸變色，各顏色之間以英文逗號分隔',
+        desc: '请自行去网站上搜寻颜色（Hex 颜色）\n支持渐变色，各颜色之间以英文逗号分隔',
         val: 'lightBgColor',
       },
       {
         icon: { name: 'photo.fill', color: '#52c41a' },
         type: 'input',
-        title: '晚上背景顏色',
-        desc: '請自行去網站上搜尋顏色（Hex 顏色）\n支持漸變色，各顏色之間以英文逗號分隔',
+        title: '晚上背景颜色',
+        desc: '请自行去网站上搜寻颜色（Hex 颜色）\n支持渐变色，各颜色之间以英文逗号分隔',
         val: 'darkBgColor',
       },
       {
         icon: { name: 'sun.max.fill', color: '#d48806' },
         type: 'input',
-        title: '白天字體顏色',
-        desc: '請自行去網站上搜尋顏色（Hex 顏色）',
+        title: '白天字体颜色',
+        desc: '请自行去网站上搜寻颜色（Hex 颜色）',
         val: 'lightColor',
       },
       {
         icon: { name: 'moon.stars.fill', color: '#d4b106' },
         type: 'input',
-        title: '晚上字體顏色',
-        desc: '請自行去網站上搜尋顏色（Hex 顏色）',
+        title: '晚上字体颜色',
+        desc: '请自行去网站上搜寻颜色（Hex 颜色）',
         val: 'darkColor',
       },
     ]
@@ -712,36 +712,36 @@ class DmYY {
       {
         icon: { name: 'text.below.photo', color: '#faad14' },
         type: 'setBackground',
-        title: '透明背景設置',
+        title: '透明背景设置',
       },
       {
         icon: { name: 'photo.on.rectangle', color: '#fa8c16' },
         type: 'setDayBackground',
-        title: '白天背景圖片',
+        title: '白天背景图片',
       },
       {
         icon: { name: 'photo.fill.on.rectangle.fill', color: '#fa541c' },
         type: 'setNightBackground',
-        title: '晚上背景圖片',
+        title: '晚上背景图片',
       },
       {
         icon: { name: 'record.circle', color: '#722ed1' },
         type: 'input',
-        title: '白天蒙層透明',
-        desc: '完全透明請設置為0',
+        title: '白天蒙层透明',
+        desc: '完全透明请设置为0',
         val: 'lightOpacity',
       },
       {
         icon: { name: 'record.circle.fill', color: '#eb2f96' },
         type: 'input',
-        title: '晚上蒙層透明',
-        desc: '完全透明請設置為0',
+        title: '晚上蒙层透明',
+        desc: '完全透明请设置为0',
         val: 'darkOpacity',
       },
       {
         icon: { name: 'clear', color: '#f5222d' },
         type: 'removeBackground',
-        title: '清空背景圖片',
+        title: '清空背景图片',
       },
     ]
     const boxjs = {
@@ -774,7 +774,7 @@ class DmYY {
     rightText.onTap = async () => {
       const options = ['取消', '重置']
       const message =
-        '該操作不可逆，會清空所有組件配置！重置後請重新打開設置菜單。'
+        '该操作不可逆，会清空所有组件配置！重置后请重新打开设置菜单。'
       const index = await this.generateAlert(message, options)
       if (index === 0) return
       this.settings = {}
@@ -782,23 +782,23 @@ class DmYY {
       this.saveSettings()
     }
     table.addRow(topRow)
-    await this.preferences(table, basic, '基礎設置')
-    await this.preferences(table, background, '背景圖片')
+    await this.preferences(table, basic, '基础设置')
+    await this.preferences(table, background, '背景图片')
   }
 
   init(widgetFamily = config.widgetFamily) {
-    // 組件大小：small,medium,large
+    // 组件大小：small,medium,large
     this.widgetFamily = widgetFamily
     this.SETTING_KEY = this.md5(Script.name())
-    //用於配置所有的組件相關設置
+    //用于配置所有的组件相关设置
 
     // 文件管理器
-    // 提示：緩存數據不要用這個操作，這個是操作源碼目錄的，緩存建議存放在local temp目錄中
+    // 提示：缓存数据不要用这个操作，这个是操作源码目录的，缓存建议存放在local temp目录中
     this.FILE_MGR =
       FileManager[
         module.filename.includes('Documents/iCloud~') ? 'iCloud' : 'local'
       ]()
-    // 本地，用於存儲圖片等
+    // 本地，用于存储图片等
     this.FILE_MGR_LOCAL = FileManager.local()
     this.BACKGROUND_KEY = this.FILE_MGR_LOCAL.joinPath(
       this.FILE_MGR_LOCAL.documentsDirectory(),
@@ -856,9 +856,9 @@ class DmYY {
   }
 
   /**
-   * 註冊點擊操作菜單
-   * @param {string} name 操作函數名
-   * @param {func} func 點擊後執行的函數
+   * 注册点击操作菜单
+   * @param {string} name 操作函数名
+   * @param {func} func 点击后执行的函数
    */
   registerAction(name, func, icon = { name: 'gear', color: '#096dd9' }) {
     this._actions[name] = func.bind(this)
@@ -866,8 +866,8 @@ class DmYY {
   }
 
   /**
-   * base64 編碼字符串
-   * @param {string} str 要編碼的字符串
+   * base64 编码字符串
+   * @param {string} str 要编码的字符串
    */
   base64Encode(str) {
     const data = Data.fromString(str)
@@ -875,8 +875,8 @@ class DmYY {
   }
 
   /**
-   * base64解碼數據 返回字符串
-   * @param {string} b64 base64編碼的數據
+   * base64解码数据 返回字符串
+   * @param {string} b64 base64编码的数据
    */
   base64Decode(b64) {
     const data = Data.fromBase64String(b64)
@@ -885,7 +885,7 @@ class DmYY {
 
   /**
    * md5 加密字符串
-   * @param {string} str 要加密成md5的數據
+   * @param {string} str 要加密成md5的数据
    */
   md5(str) {
     function d(n, t) {
@@ -1078,11 +1078,11 @@ class DmYY {
   }
 
   /**
-   * 渲染標題內容
-   * @param {object} widget 組件對象
-   * @param {string} icon 圖標地址
-   * @param {string} title 標題內容
-   * @param {bool|color} color 字體的顏色（自定義背景時使用，默認系統）
+   * 渲染标题内容
+   * @param {object} widget 组件对象
+   * @param {string} icon 图标地址
+   * @param {string} title 标题内容
+   * @param {bool|color} color 字体的颜色（自定义背景时使用，默认系统）
    */
   async renderHeader(widget, icon, title, color = false) {
     let header = widget.addStack()
@@ -1106,8 +1106,8 @@ class DmYY {
   }
 
   /**
-   * @param message 描述內容
-   * @param options 按鈕
+   * @param message 描述内容
+   * @param options 按钮
    * @returns {Promise<number>}
    */
 
@@ -1122,10 +1122,10 @@ class DmYY {
   }
 
   /**
-   * 彈出一個通知
-   * @param {string} title 通知標題
-   * @param {string} body 通知內容
-   * @param {string} url 點擊後打開的URL
+   * 弹出一个通知
+   * @param {string} title 通知标题
+   * @param {string} body 通知内容
+   * @param {string} url 点击后打开的URL
    */
   async notify(title, body, url, opts = {}) {
     let n = new Notification()
@@ -1137,16 +1137,16 @@ class DmYY {
   }
 
   /**
-   * 給圖片加一層半透明遮罩
-   * @param {Image} img 要處理的圖片
-   * @param {string} color 遮罩背景顏色
+   * 给图片加一层半透明遮罩
+   * @param {Image} img 要处理的图片
+   * @param {string} color 遮罩背景颜色
    * @param {float} opacity 透明度
    */
   async shadowImage(img, color = '#000000', opacity = 0.7) {
     if (!img) return
     if (opacity === 0) return img
     let ctx = new DrawContext()
-    // 獲取圖片的尺寸
+    // 获取图片的尺寸
     ctx.size = img.size
 
     ctx.drawImageInRect(
@@ -1159,8 +1159,8 @@ class DmYY {
   }
 
   /**
-   * 獲取當前插件的設置
-   * @param {boolean} json 是否為json格式
+   * 获取当前插件的设置
+   * @param {boolean} json 是否为json格式
    */
   getSettings(json = true) {
     let res = json ? {} : ''
@@ -1180,7 +1180,7 @@ class DmYY {
   }
 
   /**
-   * 存儲當前設置
+   * 存储当前设置
    * @param {bool} notify 是否通知提示
    */
   saveSettings(notify = true) {
@@ -1189,11 +1189,11 @@ class DmYY {
         ? JSON.stringify(this.settings)
         : String(this.settings)
     Keychain.set(this.SETTING_KEY, res)
-    if (notify) this.notify('設置成功', '桌面組件稍後將自動刷新')
+    if (notify) this.notify('设置成功', '桌面组件稍后将自动刷新')
   }
 
   /**
-   * 獲取當前插件是否有自定義背景圖片
+   * 获取当前插件是否有自定义背景图片
    * @reutrn img | false
    */
   getBackgroundImage() {
@@ -1211,7 +1211,7 @@ class DmYY {
   }
 
   /**
-   * 設置當前組件的背景圖片
+   * 设置当前组件的背景图片
    * @param {Image} img
    */
   setBackgroundImage(img, notify = true) {
@@ -1221,13 +1221,13 @@ class DmYY {
         this.FILE_MGR_LOCAL.remove(this.BACKGROUND_KEY)
       }
       if (notify)
-        this.notify('移除成功', '小組件白天背景圖片已移除，稍後刷新生效')
+        this.notify('移除成功', '小组件白天背景图片已移除，稍后刷新生效')
     } else {
-      // 設置背景
-      // 全部設置一遍，
+      // 设置背景
+      // 全部设置一遍，
       this.FILE_MGR_LOCAL.writeImage(this.BACKGROUND_KEY, img)
       if (notify)
-        this.notify('設置成功', '小組件白天背景圖片已設置！稍後刷新生效')
+        this.notify('设置成功', '小组件白天背景图片已设置！稍后刷新生效')
     }
   }
 
@@ -1238,13 +1238,13 @@ class DmYY {
         this.FILE_MGR_LOCAL.remove(this.BACKGROUND_NIGHT_KEY)
       }
       if (notify)
-        this.notify('移除成功', '小組件夜間背景圖片已移除，稍後刷新生效')
+        this.notify('移除成功', '小组件夜间背景图片已移除，稍后刷新生效')
     } else {
-      // 設置背景
-      // 全部設置一遍，
+      // 设置背景
+      // 全部设置一遍，
       this.FILE_MGR_LOCAL.writeImage(this.BACKGROUND_NIGHT_KEY, img)
       if (notify)
-        this.notify('設置成功', '小組件夜間背景圖片已設置！稍後刷新生效')
+        this.notify('设置成功', '小组件夜间背景图片已设置！稍后刷新生效')
     }
   }
 
@@ -1324,7 +1324,7 @@ class DmYY {
 // @base.end
 const Runing = async (Widget, default_args = '', isDebug = true, extra) => {
   let M = null
-  // 判斷hash是否和當前設備匹配
+  // 判断hash是否和当前设备匹配
   if (config.runsInWidget) {
     M = new Widget(args.widgetParameter || '')
 
@@ -1357,7 +1357,7 @@ const Runing = async (Widget, default_args = '', isDebug = true, extra) => {
     }
     if (__size) M.init(__size)
     if (!act || !M['_actions']) {
-      // 彈出選擇菜單
+      // 弹出选择菜单
       const actions = M['_actions']
       const table = new UITable()
       const onClick = async (item) => {
@@ -1393,7 +1393,7 @@ const Runing = async (Widget, default_args = '', isDebug = true, extra) => {
           onClick,
         },
       ]
-      await M.preferences(table, preview, '預覽組件')
+      await M.preferences(table, preview, '预览组件')
       const extra = []
       for (let _ in actions) {
         const iconItem = M._actionsIcon[_]
@@ -1409,7 +1409,7 @@ const Runing = async (Widget, default_args = '', isDebug = true, extra) => {
         }
         extra.push(actionItem)
       }
-      await M.preferences(table, extra, '配置組件')
+      await M.preferences(table, extra, '配置组件')
       return table.present()
     }
   }
