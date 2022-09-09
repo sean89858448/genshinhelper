@@ -1,4 +1,4 @@
-# genshinhelper
+# genshinhelper 繁體版
 
 ## 注意事項
 1. 本Javascipt腳本適用於iOS的 `Scriptable` APP，使用前請下載。
