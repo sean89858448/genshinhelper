@@ -341,7 +341,7 @@ class Widget extends DmYY {
                 ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinElement = resinStack.addText(`当前树脂：`)
+                let ResinElement = resinStack.addText(`當前樹脂：`)
                 ResinElement.textColor = this.widgetColor
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -461,7 +461,7 @@ class Widget extends DmYY {
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
                         if (+transformer_recovery_time.Hour > 0) {
-                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
+                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 時`)
                                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
@@ -665,7 +665,7 @@ class Widget extends DmYY {
                 ResinIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 ResinIconElement.cornerRadius = ThemeConfig.iconRadius
                 resinStack.addSpacer(ThemeConfig.iconSpacer)
-                let ResinElement = resinStack.addText(`当前树脂：`)
+                let ResinElement = resinStack.addText(`當前樹脂：`)
                 ResinElement.textColor = Color.dynamic(Color.black(), Color.white())
                 ResinElement.textOpacity = 0.6
                 ResinElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -750,7 +750,7 @@ class Widget extends DmYY {
                 TaskIconElement.imageSize = new Size(ThemeConfig.iconSize, ThemeConfig.iconSize)
                 TaskIconElement.cornerRadius = ThemeConfig.iconRadius
                 taskStack.addSpacer(ThemeConfig.iconSpacer)
-                let TaskElement = taskStack.addText(`每日委託`)
+                let TaskElement = taskStack.addText(`每日委託：`)
                 TaskElement.textColor = Color.dynamic(Color.black(), Color.white())
                 TaskElement.textOpacity = 0.6
                 TaskElement.font = Font.mediumSystemFont(ThemeConfig.textSize)
@@ -785,7 +785,7 @@ class Widget extends DmYY {
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
                         if (+transformer_recovery_time.Hour > 0) {
-                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 时`)
+                                var textItem = stackText.addText(`${transformer_recovery_time.Hour} 時`)
                                 textItem.font = Font.boldRoundedSystemFont(ThemeConfig.textSize)
                                 textItem.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                         }
@@ -899,7 +899,7 @@ class Widget extends DmYY {
                         currentDay.setDate(currentDay.getDate() - 1)
                 }
                 let [avatarMaterials, weaponsMaterials] = await getWeeklyMaterialData()
-                let avatorheader = AvatorMaterial.addText(`角色天赋： `)
+                let avatorheader = AvatorMaterial.addText(`角色天賦： `)
                 avatorheader.textColor = Color.dynamic(new Color("#995c00"), Color.white())
                 avatorheader.font = Font.mediumSystemFont(12)
                 if (currentDay.getDay() === 0) {
