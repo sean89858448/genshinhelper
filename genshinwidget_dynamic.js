@@ -14,7 +14,7 @@ const { DmYY, Runing } = require('./DmYY');
 
 /**
  * @typedef {Object} ResinResponse
- * @property {number} total_task_num - 每日委托任务
+ * @property {number} total_task_num - 每日委託任務
  * @property {number} finished_task_num - 每日委托完成数
  * @property {number} max_resin - 树脂上限
  * @property {number} current_resin - 当前树脂
